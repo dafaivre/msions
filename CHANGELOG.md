@@ -2,6 +2,9 @@
 
 <!--next-version-placeholder-->
 
-## v0.0.1 (30/11/2022)
+## v0.1.0 (2022-12-01)
 
-- First release of `msions`!
+### First tagged release of `msions`
+- Create msions package structure with cookiecutter 
+- Create hardklor module and tests
+- Build documentation
