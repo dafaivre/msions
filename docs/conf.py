@@ -7,8 +7,8 @@
 # -- Project information -----------------------------------------------------
 
 project = u"msions"
-copyright = u"2022, Danielle Faivre"
-author = u"Danielle Faivre"
+copyright = u"2022, Danielle A. Faivre"
+author = u"Danielle A. Faivre"
 
 # -- General configuration ---------------------------------------------------
 

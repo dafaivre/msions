@@ -26,7 +26,7 @@ Interested in contributing? Check out the contributing guidelines. Please note t
 
 ## License
 
-`msions` was created by Danielle Faivre. It is licensed under the terms of the Apache License 2.0 license.
+`msions` was created by Danielle A. Faivre. It is licensed under the terms of the Apache License 2.0 license.
 
 ## Credits
 

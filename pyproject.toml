@@ -2,7 +2,7 @@
 name = "msions"
 version = "0.1.0"
 description = "A python package for creating MS TIC and ion plots"
-authors = ["Danielle Faivre"]
+authors = ["Danielle A. Faivre"]
 license = "Apache License 2.0"
 readme = "README.md"
 
