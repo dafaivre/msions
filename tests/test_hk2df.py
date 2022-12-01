@@ -1,6 +1,4 @@
 from msions.hardklor import hk2df
-import numpy as np
-import pandas as pd
 
 def test_hk2df():
 	"""Test DataFrame creation from a Hardklor file"""
