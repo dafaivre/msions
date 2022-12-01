@@ -24,6 +24,11 @@ def hk2df(hk_file: str, by_int: bool = False) -> pd.DataFrame:
 	-------
 	pd.DataFrame
 		A pandas DataFrame of the input file.
+
+	Examples
+	-------
+	>>> import msions.hardklor as hk
+	>>> hk.hk2df("test.hk")	
 	"""
 	# open file
 	with open(hk_file, "r") as open_file:
@@ -83,6 +88,12 @@ def summarize_df(hk_input: Union[pd.DataFrame, str], full_ms1_df: pd.DataFrame =
 	-------
 	pd.DataFrame
 		A summarized pandas DataFrame.
+
+	Examples
+	-------
+	>>> import msions.hardklor as hk
+	>>> hk_df = hk.hk2df("test.hk")
+	>>> hk.summarize_df(hk_df)	
 	"""
 	# if it's a hardklor file
 	if isinstance(hk_input, str):

@@ -1,6 +1,6 @@
 # msions
 
-'A python package for creating MS TIC and ion plots[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[[[D[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+'A python package for creating MS TIC and ion plots'
 
 ## Installation
 
@@ -9,8 +9,16 @@ $ pip install msions
 ```
 
 ## Usage
+`msions` can be used to work with Hardklor and Kronik files and to create MS TIC and ion plots.
 
-- TODO
+```python
+from msions.hardklor import hk2df
+from msions.hardklor import summarize_df
+
+hk_file = "test.hk" # path to your file
+hk_df = hk2df(hk_file)
+sum_hk_df = summarize_df(hk_df)
+```
 
 ## Contributing
 
