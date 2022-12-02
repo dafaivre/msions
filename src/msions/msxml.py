@@ -20,6 +20,11 @@ def parse_psms(xmlfile: str) -> List[dict]:
 	-------
 	List[dict]
 		A list of dictionaries containing PSM information.
+
+	Examples
+	-------
+	>>> from msions.msxml import parse_psms
+	>>> parse_psms("test.xml")
 	"""
 	# create element tree object
 	tree = ET.parse(xmlfile)
@@ -78,7 +83,12 @@ def parse_peps(xmlfile: str) -> List[dict]:
 	-------
 	List[dict]
 		A list of dictionaries containing peptide information.
-	"""  
+
+	Examples
+	-------
+	>>> from msions.msxml import parse_peps
+	>>> parse_peps("test.xml")
+	"""
 	# create element tree object
 	tree = ET.parse(xmlfile)
 
@@ -134,7 +144,12 @@ def psms2df(xml_input: Union[List[dict], str]) -> pd.DataFrame:
 	-------
 	pd.DataFrame
 		The pandas DataFrame of PSM information.
-	"""  
+
+	Examples
+	-------
+	>>> from msions.msxml import psms2df
+	>>> psms2df("test.xml")
+	""" 
 	# if it's an XML file
 	if isinstance(xml_input, str):
 		# create list of dictionaries
@@ -191,7 +206,12 @@ def peps2df(xml_input: Union[List[dict], str]) -> pd.DataFrame:
 	-------
 	pd.DataFrame
 		The pandas DataFrame of peptide information.
-	"""  
+
+	Examples
+	-------
+	>>> from msions.msxml import peps2df
+	>>> peps2df("test.xml")
+	""" 
 	# if it's an XML file
 	if isinstance(xml_input, str):
 		# create list of dictionaries

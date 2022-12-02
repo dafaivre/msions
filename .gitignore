@@ -140,3 +140,9 @@ dmypy.json
 
 # MacOS
 .DS_Store
+
+# Large files
+docs/example_files/
+
+# Notes
+docs/hidden.md
