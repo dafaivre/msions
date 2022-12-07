@@ -1,5 +1,5 @@
-from msions.msxml import peps2df
-from msions.msxml import parse_peps
+from msions.percolator import peps2df
+from msions.percolator import parse_peps
 
 def test_peps2df():
 	"""Test Peptide DataFrame creation from list of dictionaries or XML file"""

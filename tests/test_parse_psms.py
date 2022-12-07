@@ -1,4 +1,4 @@
-from msions.msxml import parse_psms
+from msions.percolator import parse_psms
 
 def test_parse_psms():
 	"""Test list of dictionaries containing parsed PSMs"""

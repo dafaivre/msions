@@ -1,5 +1,5 @@
-from msions.msxml import psms2df
-from msions.msxml import parse_psms
+from msions.percolator import psms2df
+from msions.percolator import parse_psms
 
 def test_psms2df():
 	"""Test PSM DataFrame creation from list of dictionaries or XML file"""

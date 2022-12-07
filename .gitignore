@@ -143,6 +143,7 @@ dmypy.json
 
 # Large files
 docs/example_files/
+tests/large_fixtures/
 
 # Notes
 docs/hidden.md
