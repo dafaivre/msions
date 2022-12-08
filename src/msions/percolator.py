@@ -23,7 +23,7 @@ def parse_psms(xmlfile: str) -> List[dict]:
 
 	Examples
 	-------
-	>>> from msions.msxml import parse_psms
+	>>> from msions.percolator import parse_psms
 	>>> parse_psms("test.xml")
 	"""
 	# create element tree object
@@ -147,7 +147,7 @@ def psms2df(xml_input: Union[List[dict], str]) -> pd.DataFrame:
 
 	Examples
 	-------
-	>>> from msions.msxml import psms2df
+	>>> from msions.percolator import psms2df
 	>>> psms2df("test.xml")
 	""" 
 	# if it's an XML file
@@ -209,7 +209,7 @@ def peps2df(xml_input: Union[List[dict], str]) -> pd.DataFrame:
 
 	Examples
 	-------
-	>>> from msions.msxml import peps2df
+	>>> from msions.percolator import peps2df
 	>>> peps2df("test.xml")
 	""" 
 	# if it's an XML file
