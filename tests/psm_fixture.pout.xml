@@ -4,118 +4,123 @@ xmlns="http://per-colator.com/percolator_out/15"
 xmlns:p="http://per-colator.com/percolator_out/15" 
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 xsi:schemaLocation="http://per-colator.com/percolator_out/15 https://github.com/percolator/percolator/raw/pout-1-5/src/xml/percolator_out.xsd" 
-p:majorVersion="3" p:minorVersion="05" p:percolator_version="Percolator version 3.05.nightly-33-eeae956-dirty">
+p:majorVersion="3" p:minorVersion="05" p:percolator_version="Percolator version 3.05.nightly-137-e806a0c5">
 
   <process_info>
-    <command_line>percolator --results-peptides crux_output/percolator.target.peptides.txt --decoy-results-peptides crux_output/percolator.decoy.peptides.txt --results-psms crux_output/percolator.target.psms.txt --decoy-results-psms crux_output/percolator.decoy.psms.txt --verbose 2 --protein-decoy-pattern decoy_ --seed 1 --xmloutput crux_output/percolator.pout.xml --subset-max-train 0 --trainFDR 0.01 --testFDR 0.01 --maxiter 10 --search-input auto --no-schema-validation --protein-enzyme trypsin --post-processing-tdc crux_output/comet.pin</command_line>
+    <command_line>percolator --results-peptides ./crux_output/percolator.target.peptides.txt --decoy-results-peptides ./crux_output/percolator.decoy.peptides.txt --results-psms ./crux_output/percolator.target.psms.txt --decoy-results-psms ./crux_output/percolator.decoy.psms.txt --verbose 2 --protein-decoy-pattern decoy_ --seed 1 --xmloutput ./crux_output/percolator.pout.xml --subset-max-train 0 --trainFDR 0.01 --testFDR 0.01 --maxiter 10 --search-input auto --no-schema-validation --protein-enzyme trypsin --post-processing-tdc crux_output/comet.pin</command_line>
     <other_command_line></other_command_line>
     <pi_0_psms>1</pi_0_psms>
     <pi_0_peptides>1</pi_0_peptides>
-    <psms_qlevel>44353</psms_qlevel>
-    <peptides_qlevel>21904</peptides_qlevel>
+    <psms_qlevel>39352</psms_qlevel>
+    <peptides_qlevel>25080</peptides_qlevel>
   </process_info>
 
   <psms>
-    <psm p:psm_id="./crux_output/comet_181148_3_1">
-      <svm_score>1.356510</svm_score>
-      <q_value>6.321113e-05</q_value>
-      <pep>1.387284e-08</pep>
-      <exp_mass>2365.2418</exp_mass>
-      <calc_mass>2365.240</calc_mass>
-      <peptide_seq n="R" c="A" seq="LTLYDIAHTPGVAADLSHIETK"/>
-      <protein_id>sp|P40926|MDHM_HUMAN</protein_id>
+    <psm p:psm_id="./crux_output/comet_53678_2_1">
+      <svm_score>1.761</svm_score>
+      <q_value>5.117e-05</q_value>
+      <pep>4.367e-10</pep>
+      <exp_mass>1924.9183</exp_mass>
+      <calc_mass>1924.917</calc_mass>
+      <peptide_seq n="K" c="T" seq="NLEAVETLGSTSTICSDK"/>
+      <protein_id>sp|P13637|AT1A3_HUMAN</protein_id>
+      <protein_id>sp|Q13733|AT1A4_HUMAN</protein_id>
+      <protein_id>sp|P05023|AT1A1_HUMAN</protein_id>
+      <protein_id>sp|P50993|AT1A2_HUMAN</protein_id>
       <p_value>0.000e+00</p_value>
     </psm>
-    <psm p:psm_id="./crux_output/comet_231719_4_1">
-      <svm_score>1.353</svm_score>
-      <q_value>6.321e-05</q_value>
-      <pep>1.438e-08</pep>
-      <exp_mass>3063.6168</exp_mass>
-      <calc_mass>3063.614</calc_mass>
-      <peptide_seq n="R" c="G" seq="AHITLGCAADVEAVQTGLDLLEILRQEK"/>
-      <protein_id>sp|P09543|CN37_HUMAN</protein_id>
+    <psm p:psm_id="./crux_output/comet_53798_2_1">
+      <svm_score>1.535</svm_score>
+      <q_value>5.117e-05</q_value>
+      <pep>5.068e-09</pep>
+      <exp_mass>2796.3687</exp_mass>
+      <calc_mass>2796.368</calc_mass>
+      <peptide_seq n="K" c="M" seq="NLEAVETLGSTSTICSDKTGTLTQNR"/>
+      <protein_id>sp|P13637|AT1A3_HUMAN</protein_id>
+      <protein_id>sp|Q13733|AT1A4_HUMAN</protein_id>
+      <protein_id>sp|P05023|AT1A1_HUMAN</protein_id>
+      <protein_id>sp|P50993|AT1A2_HUMAN</protein_id>
       <p_value>0.000e+00</p_value>
     </psm>
-    <psm p:psm_id="./crux_output/comet_193541_3_1">
-      <svm_score>1.319</svm_score>
-      <q_value>6.321e-05</q_value>
-      <pep>2.126e-08</pep>
-      <exp_mass>2338.1697</exp_mass>
-      <calc_mass>2338.167</calc_mass>
-      <peptide_seq n="K" c="T" seq="HQILEQAVEDYAETVHQLSK"/>
-      <protein_id>sp|Q01082|SPTB2_HUMAN</protein_id>
+    <psm p:psm_id="./crux_output/comet_53988_2_1">
+      <svm_score>1.484</svm_score>
+      <q_value>5.117e-05</q_value>
+      <pep>8.818e-09</pep>
+      <exp_mass>2121.0320</exp_mass>
+      <calc_mass>2121.032</calc_mass>
+      <peptide_seq n="K" c="L" seq="RGTGGVDTAAVGGVFDVSNADR"/>
+      <protein_id>sp|P12277|KCRB_HUMAN</protein_id>
       <p_value>0.000e+00</p_value>
     </psm>
-    <psm p:psm_id="./crux_output/comet_214514_5_1">
-      <svm_score>1.299</svm_score>
-      <q_value>6.321e-05</q_value>
-      <pep>2.651e-08</pep>
-      <exp_mass>3124.5872</exp_mass>
-      <calc_mass>3124.584</calc_mass>
-      <peptide_seq n="K" c="L" seq="KVADALTNAVAHVDDMPNALSALSDLHAHK"/>
-      <protein_id>sp|P69905|HBA_HUMAN</protein_id>
+    <psm p:psm_id="./crux_output/comet_53163_3_1">
+      <svm_score>1.459</svm_score>
+      <q_value>5.117e-05</q_value>
+      <pep>1.160e-08</pep>
+      <exp_mass>1582.9085</exp_mass>
+      <calc_mass>1582.906</calc_mass>
+      <peptide_seq n="K" c="Y" seq="LVRPPVQVYGIEGR"/>
+      <protein_id>sp|P48047|ATPO_HUMAN</protein_id>
       <p_value>0.000e+00</p_value>
     </psm>
-    <psm p:psm_id="./crux_output/comet_231402_4_1">
-      <svm_score>1.299</svm_score>
-      <q_value>6.321e-05</q_value>
-      <pep>2.668e-08</pep>
-      <exp_mass>3088.5636</exp_mass>
-      <calc_mass>3088.570</calc_mass>
-      <peptide_seq n="R" c="L" seq="HIPDEIFLLTAEQIAQEVSEQHLSQGR"/>
-      <protein_id>sp|Q16798|MAON_HUMAN</protein_id>
+    <psm p:psm_id="./crux_output/comet_53834_3_1">
+      <svm_score>1.386</svm_score>
+      <q_value>5.117e-05</q_value>
+      <pep>2.542e-08</pep>
+      <exp_mass>1907.9732</exp_mass>
+      <calc_mass>1907.972</calc_mass>
+      <peptide_seq n="R" c="N" seq="TNVLGHLQQGGAPTPFDR"/>
+      <protein_id>sp|P17858|PFKAL_HUMAN</protein_id>
       <p_value>0.000e+00</p_value>
     </psm>
-    <psm p:psm_id="./crux_output/comet_229109_3_1">
-      <svm_score>1.295</svm_score>
-      <q_value>6.321e-05</q_value>
-      <pep>2.765e-08</pep>
-      <exp_mass>2502.3200</exp_mass>
-      <calc_mass>2502.317</calc_mass>
-      <peptide_seq n="R" c="G" seq="RPLVLQLVNATTEYAEFLHCK"/>
-      <protein_id>sp|Q05193|DYN1_HUMAN</protein_id>
+    <psm p:psm_id="./crux_output/comet_53403_2_1">
+      <svm_score>1.374</svm_score>
+      <q_value>5.117e-05</q_value>
+      <pep>2.895e-08</pep>
+      <exp_mass>1862.8698</exp_mass>
+      <calc_mass>1862.869</calc_mass>
+      <peptide_seq n="K" c="R" seq="DVIVQDDDVDCTLVEK"/>
+      <protein_id>sp|P05129|KPCG_HUMAN</protein_id>
       <p_value>0.000e+00</p_value>
     </psm>
-    <psm p:psm_id="./crux_output/comet_199288_3_1">
-      <svm_score>1.293</svm_score>
-      <q_value>6.321e-05</q_value>
-      <pep>2.846e-08</pep>
-      <exp_mass>2578.3753</exp_mass>
-      <calc_mass>2578.372</calc_mass>
-      <peptide_seq n="K" c="L" seq="AVDHINSTIAPALISSGLSVVEQEK"/>
-      <protein_id>sp|P09104|ENOG_HUMAN</protein_id>
+    <psm p:psm_id="./crux_output/comet_53079_2_1">
+      <svm_score>1.372</svm_score>
+      <q_value>5.117e-05</q_value>
+      <pep>2.979e-08</pep>
+      <exp_mass>1535.7951</exp_mass>
+      <calc_mass>1535.795</calc_mass>
+      <peptide_seq n="K" c="E" seq="EAVLYVDSQEAALK"/>
+      <protein_id>sp|Q14894|CRYM_HUMAN</protein_id>
       <p_value>0.000e+00</p_value>
     </psm>
-    <psm p:psm_id="./crux_output/comet_158563_2_1">
-      <svm_score>1.293</svm_score>
-      <q_value>6.321e-05</q_value>
-      <pep>2.849e-08</pep>
-      <exp_mass>1667.7955</exp_mass>
-      <calc_mass>1667.795</calc_mass>
-      <peptide_seq n="R" c="G" seq="NVQAEEMVEFSSGLK"/>
-      <protein_id>sp|P25705|ATPA_HUMAN</protein_id>
+    <psm p:psm_id="./crux_output/comet_53239_2_1">
+      <svm_score>1.318</svm_score>
+      <q_value>5.117e-05</q_value>
+      <pep>5.330e-08</pep>
+      <exp_mass>2051.9600</exp_mass>
+      <calc_mass>2051.959</calc_mass>
+      <peptide_seq n="K" c="L" seq="VLAVNQENEQLMEDYEK"/>
+      <protein_id>sp|P12814|ACTN1_HUMAN</protein_id>
       <p_value>0.000e+00</p_value>
     </psm>
-    <psm p:psm_id="./crux_output/comet_181134_4_1">
-      <svm_score>1.282</svm_score>
-      <q_value>6.321e-05</q_value>
-      <pep>3.213e-08</pep>
-      <exp_mass>2365.2416</exp_mass>
-      <calc_mass>2365.240</calc_mass>
-      <peptide_seq n="R" c="A" seq="LTLYDIAHTPGVAADLSHIETK"/>
-      <protein_id>sp|P40926|MDHM_HUMAN</protein_id>
+    <psm p:psm_id="./crux_output/comet_53952_3_1">
+      <svm_score>1.285</svm_score>
+      <q_value>5.117e-05</q_value>
+      <pep>7.613e-08</pep>
+      <exp_mass>2121.0327</exp_mass>
+      <calc_mass>2121.032</calc_mass>
+      <peptide_seq n="K" c="L" seq="RGTGGVDTAAVGGVFDVSNADR"/>
+      <protein_id>sp|P12277|KCRB_HUMAN</protein_id>
       <p_value>0.000e+00</p_value>
     </psm>
-    <psm p:psm_id="./crux_output/comet_213255_5_1">
-      <svm_score>1.282</svm_score>
-      <q_value>6.321e-05</q_value>
-      <pep>3.216e-08</pep>
-      <exp_mass>3124.5866</exp_mass>
-      <calc_mass>3124.584</calc_mass>
-      <peptide_seq n="K" c="L" seq="KVADALTNAVAHVDDMPNALSALSDLHAHK"/>
-      <protein_id>sp|P69905|HBA_HUMAN</protein_id>
+    <psm p:psm_id="./crux_output/comet_53507_4_1">
+      <svm_score>1.285</svm_score>
+      <q_value>5.117e-05</q_value>
+      <pep>7.660e-08</pep>
+      <exp_mass>3753.7379</exp_mass>
+      <calc_mass>3753.738</calc_mass>
+      <peptide_seq n="R" c="V" seq="HGGYKPSDEHKTDLNPDNLQGGDDLDPNYVLSSR"/>
+      <protein_id>sp|P12277|KCRB_HUMAN</protein_id>
       <p_value>0.000e+00</p_value>
     </psm>
   </psms>
-
 </percolator_output>

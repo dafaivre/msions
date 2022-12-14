@@ -63,3 +63,53 @@ def tic_df(input_mzml: str, level="1") -> pd.DataFrame:
 
 	# return data frame
 	return tic_df
+
+
+def find_precursorscan(ms2_scannum: int, pymzml_input) -> List[Union[int, float, float]]: 
+	""" 
+	Find the MS1 precursor scan info for a PSM scan number.  
+	This function can be applied to the PSM pandas DataFrame 
+	'scan_num' column.
+	
+	Parameters 
+	---------- 
+	ms2_scannum : int 
+		The MS2 scan number. 
+	pymzml_input : pymzml.run.Reader(mzML_file) or str 
+		The mzML Reader object or file. 
+
+	Returns 
+	------- 
+	List[int, float, float] 
+		List of precursor scan number, precursor m/z, and precursor intensity. 
+
+	Examples 
+	------- 
+	>>> from msions.mzml import find_precursorscan
+	>>> from msions.mzml import tic_df 
+	>>> psm_xml_df = perc.psms2df("test.xml")
+	>>> run = "test.mzML"
+	>>> psm_xml_df['ms1_scan'], psm_xml_df['ms1_mz'], psm_xml_df['ms1_intensity'] =  
+			zip(*psm_xml_df['scan_num'].apply(find_precursorscan, pymzml_input=run)) 
+	""" 
+	# check if run is provided as a file 
+	if isinstance(pymzml_input, str): 
+		# create reader object 
+		pymzml_run = pymzml.run.Reader(pymzml_input) 
+
+	# if already a reader object 
+	else: 
+		pymzml_run = pymzml_input 
+
+	# define spectrum reader object 
+	spectrum = pymzml_run[ms2_scannum] 
+
+	# find MS1 precursor scan for MS2 
+	ms1_precursorscan = int(spectrum.get_element_by_path(['precursorList', 'precursor'])[0].get('spectrumRef').split('=')[3]) 
+	ms1_mz = float(spectrum.get_element_by_path(['precursorList', 'precursor', 
+												 'selectedIonList', 'selectedIon', 'cvParam'])[0].get('value')) 
+	ms1_intensity = float(spectrum.get_element_by_path(['precursorList', 'precursor', 
+														'selectedIonList', 'selectedIon', 'cvParam'])[2].get('value')) 
+
+	# return MS1 scan number, precursor m/z, and precursor intensity
+	return [ms1_precursorscan, ms1_mz, ms1_intensity]

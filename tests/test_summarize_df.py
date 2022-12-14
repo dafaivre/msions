@@ -4,7 +4,7 @@ from msions.mzml import tic_df
 
 def test_summarize_df():
 	"""Test summarized DataFrame"""
-	expected_rows = 2  ## testing function without MS1 DataFrame
+	expected_rows = 3  ## testing function without MS1 DataFrame
 	expected_columns = 5  ## testing function with MS1 DataFrame
 	hk_df = hk2df("tests/hk_fixture.hk")
 	actual_rows = summarize_df(hk_df).shape[0]  ## testing function without MS1 DataFrame

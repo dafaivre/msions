@@ -14,7 +14,7 @@ def test_peps2df():
 	assert actual_type_dicts == expected_type, "DataFrame was not created correctly. Check format of input."	
 	
 	# test expected rows and columns
-	expected_rows = 141
+	expected_rows = 47
 	expected_columns = 6
 	actual_rows = actual_df.shape[0]
 	actual_columns = actual_df.shape[1]

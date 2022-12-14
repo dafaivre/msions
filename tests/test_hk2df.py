@@ -9,7 +9,7 @@ def test_hk2df():
 def test_byint():
 	"""Test DataFrame creation and sorting from a Hardklor file"""
 	expected_type = "DataFrame"
-	expected_int = 589898
+	expected_int = 4025362432
 	actual = hk2df("tests/hk_fixture.hk", by_int=True)
 	actual_type = type(actual).__name__
 	actual_int = actual.loc[0,"intensity"]
