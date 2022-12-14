@@ -5,6 +5,7 @@ XMLs, such as Percolator output.
 import xml.etree.ElementTree as ET
 import pandas as pd
 from typing import Union, List
+import numpy as np
 
 
 def parse_psms(xmlfile: str) -> List[dict]:
@@ -172,7 +173,6 @@ def psms2df(xml_input: Union[List[dict], str]) -> pd.DataFrame:
 		q_val = psm[prefix+'q_value']
 		exp_mass = psm[prefix+'exp_mass']
 		calc_mass = psm[prefix+'calc_mass']
-		# prot = psm[prefix+'protein_id']
 		scan = psm[prefix+'psm_id'].strip().split('_')[2]
 		xml_lst.append([seq, prots, q_val, exp_mass, calc_mass, scan])
 
@@ -252,3 +252,30 @@ def peps2df(xml_input: Union[List[dict], str]) -> pd.DataFrame:
 
 	# return data frame
 	return xml_df
+
+
+def id_scans(perc_target, ms2_tic_df):
+	"""
+	Create a column saying whether an MS2 was identified
+
+	Parameters
+	----------
+	perc_target : str
+		The TXT file of percolator output.
+	ms2_tic_df: pd.DataFrame
+		The pandas DataFrame of MS2 scan information.
+
+	Examples
+	-------
+	>>> from msions.percolator import id_scans
+	>>> ms2_tic_df = mzml.tic_df("test.mzML", level="2")
+	>>> id_scans("test.percolator.target.peptides.txt", ms2_tic_df)
+	""" 
+	# create DataFrame of percolator results for run
+	perc_df = pd.read_csv(perc_target, header=0, sep="\t")
+
+	# remove q-values greater than 0.01 and sort by scan
+	perc_sig = perc_df[perc_df['percolator q-value'] < 0.01].sort_values(by="scan").reset_index(drop=True)
+
+    # create list for whether MS2 was ID'd
+	ms2_tic_df["IDd"] = np.isin(ms2_tic_df["scan_num"], perc_sig['scan'])
