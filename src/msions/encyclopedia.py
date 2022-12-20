@@ -41,7 +41,7 @@ def dia_df(input_elib: str) -> pd.DataFrame:
 	return encyclo_df
 
 
-def match_hk(ref_row, other_df): 
+def match_hk(ref_row: pd.Series, other_df: pd.DataFrame) -> int: 
 	""" 
 	Match EncyclopeDIA elib output to Hardklor output
 
@@ -54,9 +54,8 @@ def match_hk(ref_row, other_df):
 
 	Returns 
 	------- 
-	pd.DataFrame 
-		A pandas DataFrame containing PrecursorMz, PrecursorCharge, PeptideModSeq, PeptideSeq,  
-		RtInSeconds, RTInSecondsStart, and RTInSecondsStop columns. 
+	int
+		Number of rows in match DataFrame.
 
 	Examples 
 	------- 
