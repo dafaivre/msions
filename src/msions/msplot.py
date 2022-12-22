@@ -4,19 +4,20 @@ This module contains functions that are useful for plotting MS data in Python.
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns  # for despine of plots
-from typing import List
+from msions.mzml import tic_df
+from typing import List, Union
 
 
-def plot_tic(df: pd.DataFrame, color: str = "#1f77b4", xlabel: str = "Time (min)", 
+def plot_tic(mzml_input: Union[pd.DataFrame, str], color: str = "#1f77b4", xlabel: str = "Time (min)", 
 			 ylabel: str = "Total Ion Current", no_labels: bool = False, alpha: float = 1.0, 
 			 ymax: float = None, fig_params: List[float] = None):
 	"""
-	Plots TIC against retention time from a pandas DataFrame.
+	Plots TIC against retention time.
 
 	Parameters
 	----------
-	df : pd.DataFrame
-		The pandas DataFrame containing retention time and TIC.
+	mzml_input : pd.DataFrame or str
+		The pandas DataFrame containing retention time and TIC or the mzML file.
 	color: str
 		The color for the line plot.
 	xlabel: str
@@ -41,6 +42,15 @@ def plot_tic(df: pd.DataFrame, color: str = "#1f77b4", xlabel: str = "Time (min)
 	>>> plot_tic(ms1_df)
 	>>> plt.show()
 	""" 
+	# if it's an mzML file
+	if isinstance(mzml_input, str):
+		# create mzML data frame
+		df = tic_df(mzml_input)
+		
+	# if it's a data frame already
+	else:
+		df = mzml_input	
+	
 	# change figure size
 	if fig_params is not None:
 		if len(fig_params) == 2:
@@ -92,16 +102,16 @@ def plot_tic(df: pd.DataFrame, color: str = "#1f77b4", xlabel: str = "Time (min)
 			labelright=False) 
 
 
-def plot_ions(df: pd.DataFrame, color: str = "#1f77b4", xlabel: str = "Time (min)", 
+def plot_ions(mzml_input: Union[pd.DataFrame, str], color: str = "#1f77b4", xlabel: str = "Time (min)", 
 			  ylabel: str = "Ions", no_labels: bool = False, alpha: float = 1.0, 
 			  ymax: float = None, fig_params: List[float] = None):
 	"""
-	Plots ions against retention time from a pandas DataFrame.
+	Plots ions against retention time.
 	
 	Parameters
 	----------
-	df : pd.DataFrame
-		The pandas DataFrame containing retention time and ion counts.
+	mzml_input : pd.DataFrame or str
+		The pandas DataFrame containing retention time and TIC or the mzML file.
 	color: str
 		The color for the line plot.
 	xlabel: str
@@ -126,6 +136,15 @@ def plot_ions(df: pd.DataFrame, color: str = "#1f77b4", xlabel: str = "Time (min
 	>>> plot_ions(ms1_df)
 	>>> plt.show()
 	""" 
+	# if it's an mzML file
+	if isinstance(mzml_input, str):
+		# create mzML data frame
+		df = tic_df(mzml_input)
+		
+	# if it's a data frame already
+	else:
+		df = mzml_input	
+
 	# change figure size
 	if fig_params is not None:
 		if len(fig_params) == 2:
