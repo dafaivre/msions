@@ -113,3 +113,40 @@ def find_precursorscan(ms2_scannum: int, pymzml_input) -> List[Union[int, float,
 
 	# return MS1 scan number, precursor m/z, and precursor intensity
 	return [ms1_precursorscan, ms1_mz, ms1_intensity]
+
+
+def peak_df(input_mzml: str) -> pd.DataFrame:
+	""" 
+	Create a pandas DataFrame containing the m/z, 
+	ion current, and retention time for all MS1 peaks.
+	
+	Parameters
+	----------
+	input_mzml : str
+		The input mzML file.
+		
+	Returns
+	-------
+	pd.DataFrame
+		A pandas DataFrame containing the m/z, ion current, and retention time for all MS1 peaks.
+
+	Examples 
+	------- 
+	>>> from msions.mzml import peak_df
+	>>> peak_df("test.mzML")
+	""" 
+	# create run object
+	run = pymzml.run.Reader(input_mzml)
+
+	# initiate peak DataFrame
+	peak_df = pd.DataFrame(columns=["mz", "ips", "rt"])
+
+	# loop through spectra
+	for spectra in run:
+		if spectra.ms_level == 1:
+			peak_array = pd.DataFrame(spectra.peaks("centroided")).rename(columns={0: "mz", 1: "ips"})
+			peak_array["mz"] = peak_array["mz"].round(4)
+			peak_array["rt"] = spectra.scan_time[0]
+			peak_df = pd.concat([peak_df, peak_array])	
+
+	return peak_df

@@ -2,6 +2,20 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.0 (2023-01-04)
+
+### Additions
+- Create encyclopedia and utils modules
+- Add find_precursorscan and peak_df to mzml module
+- Add id_scans functions to percolator module
+- Add filter_df and match_rt_mass functions to kronik module
+- Add ability to plot using an mzML file input
+- Create tests and documentation for new functions and modules
+
+### Changed
+- Rename msxml module to percolator
+- Update test fixtures
+
 ## v0.2.0 (2022-12-05)
 
 ### Additions
