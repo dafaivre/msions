@@ -30,7 +30,7 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 # Notebook execution configuration
 jupyter_execute_notebooks = "cache"
-nb_execution_timeout = -1
+# nb_execution_timeout = -1 # works for myst_nb, not readthedocs
 
 # -- Options for HTML output -------------------------------------------------
 
