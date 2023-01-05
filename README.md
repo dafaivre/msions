@@ -21,7 +21,7 @@ import msions.msplot as msplot
 import msions.utils as msutils
 ```
 
-See the [documentation](https://msions.readthedocs.io/en/latest/index.html) for examples.
+See the [documentation](https://msions.readthedocs.io/en/latest/example.html) for examples.
 
 ## Contributing
 
