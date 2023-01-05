@@ -12,13 +12,16 @@ $ pip install msions
 `msions` can be used to work with Hardklor and Kronik files and to create MS TIC and ion plots.
 
 ```python
-from msions.hardklor import hk2df
-from msions.hardklor import summarize_df
-
-hk_file = "test.hk" # path to your file
-hk_df = hk2df(hk_file)
-sum_hk_df = summarize_df(hk_df)
+import msions.mzml as mzml
+import msions.hardklor as hk
+import msions.kronik as kro
+import msions.percolator as perc
+import msions.encyclopedia as encyclo
+import msions.msplot as msplot
+import msions.utils as msutils
 ```
+
+See the [documentation](https://msions.readthedocs.io/en/latest/index.html) for examples.
 
 ## Contributing
 
