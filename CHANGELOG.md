@@ -2,6 +2,11 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.1 (2023-01-15)
+
+### Fixes
+- Fix m/z rounding in hardklor module
+
 ## v0.3.0 (2023-01-04)
 
 ### Additions
