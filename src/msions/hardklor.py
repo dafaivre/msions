@@ -66,6 +66,9 @@ def hk2df(hk_file: str, by_int: bool = False) -> pd.DataFrame:
 		# calculate m/z
 		pep_df['mz'] = (pep_df['mass']+pep_df['charge']*1.00728)/pep_df['charge']
 
+		# round m/z to 4 decimal places
+		pep_df['mz'] = pep_df["mz"].round(4)
+
 		# calculate retention time in seconds
 		pep_df['rt_s'] = pep_df['rt']*60
 
