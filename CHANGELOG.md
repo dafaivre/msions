@@ -2,6 +2,11 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.2 (2023-02-20)
+
+### Changes
+- Move find_precursorscan functionality to tic_df function
+
 ## v0.3.1 (2023-01-15)
 
 ### Fixes
@@ -17,7 +22,7 @@
 - Add ability to plot using an mzML file input
 - Create tests and documentation for new functions and modules
 
-### Changed
+### Changes
 - Rename msxml module to percolator
 - Update test fixtures
 
