@@ -7,7 +7,7 @@ import numpy as np
 from typing import Union
 
 
-def simple_df(kro_input: Union[pd.DataFrame, str], cv: int = None, topN: int = None, bestInt_thresh: float = None,
+def simple_df(kro_input: Union[pd.DataFrame, str], cv: Union[int, str] = None, topN: int = None, bestInt_thresh: float = None,
 			  sumInt_thresh: float = None, remove1: bool = False, by_int: bool = False) -> pd.DataFrame:
 	"""
 	Create a simplified Kronik pandas DataFrame.
@@ -18,8 +18,8 @@ def simple_df(kro_input: Union[pd.DataFrame, str], cv: int = None, topN: int = N
 	----------
 	kro_input : pd.Dataframe or str
 		The Kronik pandas DataFrame or Kronik tab-delimited file.
-	CV : int
-		CV value associated with the dataset.
+	cv : int or str
+		CV value associated with the dataset or "given" for already present
 	topN : int
 		Only include features with topN summed intensity.
 	bestInt_thresh: float
@@ -48,8 +48,14 @@ def simple_df(kro_input: Union[pd.DataFrame, str], cv: int = None, topN: int = N
 
 		# if dataset has a FAIMS CV
 		if cv is not None:
-			# define CV associated with scans
-			kro_df['CV'] = cv
+			# if cv is an integer
+			if isinstance(cv, int):
+				# define CV associated with scans
+				kro_df['CV'] = cv
+
+			# if cv is not equal to given
+			else: 
+				assert cv == "given", "CV is not an integer or 'given.' Please check input."
 
 			# select columns of interest
 			df_short = kro_df.loc[:, ["First Scan","Last Scan", "Num of Scans", "Monoisotopic Mass", 
