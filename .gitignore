@@ -144,6 +144,8 @@ dmypy.json
 # Large files
 docs/example_files/
 tests/large_fixtures/
+panoramaweb_files/
 
 # Notes
 docs/hidden.md
+commit_notes.txt

@@ -46,10 +46,25 @@ def tic_df(input_mzml: str, level: str = "1", include_ms1_info: bool = False, fa
 		for spectrum in run:
 			info_lst = []
 			if spectrum.ms_level == 1:
-				info_lst = [spectrum.ID, spectrum.scan_time[0], spectrum.TIC, 
-								spectrum.get_element_by_path(['scanList','scan','cvParam'])[2].get('value')]
+				try:
+					if spectrum.get_element_by_path(['scanList','scan','cvParam'])[2].get('name') == "ion injection time":
+						it_val = spectrum.get_element_by_path(['scanList','scan','cvParam'])[2].get('value')
+						info_lst = [spectrum.ID, spectrum.scan_time[0], spectrum.TIC, 
+									it_val]
+					elif spectrum.get_element_by_path(['scanList','scan','cvParam'])[3].get('name') == "ion injection time":
+						it_val = spectrum.get_element_by_path(['scanList','scan','cvParam'])[3].get('value')
+						info_lst = [spectrum.ID, spectrum.scan_time[0], spectrum.TIC, 
+									it_val]
+				except:	
+					"File has different formatting than expected. Ion injection time needs to be re-defined."
+				
 				if faims:
-					info_lst.append(int(float(spectrum.get_element_by_path(['cvParam'])[7].get('value'))))
+					try:
+						if spectrum.get_element_by_path(['scanList','scan','cvParam'])[7].get('name') == "FAIMS compensation voltage":
+							cv_val = spectrum.get_element_by_path(['scanList','scan','cvParam'])[7].get('value')
+							info_lst.append(int(float(cv_val)))
+					except:
+						"File has different formatting than expected. CV needs to be re-defined."
 				tic_lst.append(info_lst)
 	# if examining MS2
 	elif level == "2":
@@ -58,12 +73,16 @@ def tic_df(input_mzml: str, level: str = "1", include_ms1_info: bool = False, fa
 			info_lst = []
 			if spectrum.ms_level == 2:
 				if include_ms1_info:
+					# define triggered MS1 scan number
 					info_lst = [int(spectrum.get_element_by_path(['precursorList', 'precursor'])[0].get('spectrumRef').split('=')[3]),
+									# define triggered MS1 m/z
 									float(spectrum.get_element_by_path(['precursorList', 'precursor', 
 																		'selectedIonList', 'selectedIon', 'cvParam'])[0].get('value')),
+									# define triggered MS1 intensity
 									float(spectrum.get_element_by_path(['precursorList', 'precursor', 
 																		'selectedIonList', 'selectedIon', 'cvParam'])[2].get('value')),
 									spectrum.ID, spectrum.scan_time[0], spectrum.TIC, 
+									# define injection time (IT)
 									spectrum.get_element_by_path(['scanList','scan','cvParam'])[2].get('value')]
 				else:
 					info_lst = [spectrum.ID, spectrum.scan_time[0], spectrum.TIC, 
@@ -76,12 +95,16 @@ def tic_df(input_mzml: str, level: str = "1", include_ms1_info: bool = False, fa
 			info_lst = []
 			if spectrum.ms_level == 2:
 				if include_ms1_info:
+					# define triggered MS1 scan number
 					info_lst = [int(spectrum.get_element_by_path(['precursorList', 'precursor'])[0].get('spectrumRef').split('=')[3]),
+								# define triggered MS1 m/z
 								float(spectrum.get_element_by_path(['precursorList', 'precursor', 
 																	'selectedIonList', 'selectedIon', 'cvParam'])[0].get('value')),
+								# define triggered MS1 intensity
 								float(spectrum.get_element_by_path(['precursorList', 'precursor', 
 																	'selectedIonList', 'selectedIon', 'cvParam'])[2].get('value')),
 								spectrum.ID, spectrum.scan_time[0], spectrum.TIC, 
+								# define injection time (IT)
 								spectrum.get_element_by_path(['scanList','scan','cvParam'])[2].get('value')]
 				else:
 					info_lst = [spectrum.ID, spectrum.scan_time[0], spectrum.TIC, 
@@ -107,9 +130,13 @@ def tic_df(input_mzml: str, level: str = "1", include_ms1_info: bool = False, fa
 		if faims:
 			tic_df = pd.DataFrame(tic_lst,
 								  columns=['ms1_scan', 'ms1_mz', 'ms1_int','scan_num', 'rt', 'TIC', 'IT', 'CV'])
+			# round ms1_mz
+			tic_df['ms1_mz'] = tic_df['ms1_mz'].round(4)
 		else:
 			tic_df = pd.DataFrame(tic_lst, 
 								  columns=['ms1_scan', 'ms1_mz', 'ms1_int','scan_num', 'rt', 'TIC', 'IT'])
+			# round ms1_mz
+			tic_df['ms1_mz'] = tic_df['ms1_mz'].round(4)
 	else:
 		if faims:
 			tic_df = pd.DataFrame(tic_lst,
@@ -118,6 +145,7 @@ def tic_df(input_mzml: str, level: str = "1", include_ms1_info: bool = False, fa
 			tic_df = pd.DataFrame(tic_lst,
 								  columns=['scan_num', 'rt', 'TIC', 'IT'])
 
+	# round retention time
 	tic_df['rt'] = tic_df['rt'].round(4)
 
 	# update column data types

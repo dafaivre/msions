@@ -30,4 +30,17 @@ def test_bin_data():
 	bin_df = bin_data(peak_df, type="mz", bin_mz_list=bin_mz_list)
 	expected_num_rows = 302
 	actual_num_rows = bin_df.shape[0]
-	assert actual_num_rows == expected_num_rows, "Binned DataFrame was not created properly."
+	assert actual_num_rows == expected_num_rows, "m/z was not binned properly."
+
+	# create bins for retention time
+	rt_bin_size = 0.25
+	rt_bin_mult = 1
+	rt_start = 0
+	rt_end = 100
+	bin_rt_list = bin_list(rt_start, rt_end, rt_bin_size, rt_bin_mult)
+
+	# test "rt" type
+	bin_df = bin_data(peak_df, type="rt", bin_rt_list=bin_rt_list)
+	expected_num_rows = 521885
+	actual_num_rows = bin_df.shape[0]
+	assert actual_num_rows == expected_num_rows, "rt was not binned properly."

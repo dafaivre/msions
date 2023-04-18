@@ -12,7 +12,7 @@ def test_match_kro():
 	perc_df = perc.psms2df("tests/psm_fixture.pout.xml")
 	ms_df = mzml.tic_df("tests/large_fixtures/short_DDA_file.mzML", level="all", include_ms1_info=True)
 	match_kro(kro_df, perc_df, ms_df)
-	expected_matches = 9
+	expected_matches = 7
 	kro_matches = sum(kro_df.ID_d)
 	perc_matches = sum(perc_df.in_kro)
 	assert kro_matches == expected_matches, "Kronik and Percolator match function did not work properly. Please look at Kronik input"

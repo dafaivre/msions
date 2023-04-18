@@ -3,6 +3,7 @@ This module contains functions that are useful for interacting with
 Hardklor output files in Python.
 """
 import pandas as pd
+import numpy as np
 from typing import Union
 
 
@@ -126,11 +127,20 @@ def summarize_df(hk_input: Union[pd.DataFrame, str], full_ms1_df: pd.DataFrame =
 	# if complete data frame is given
 	if full_ms1_df is not None:
 		# merge ion injection time into data frame
-		sum_group = pd.merge(sum_group, full_ms1_df[['scan_num', 'IT']], on='scan_num')
+		sum_group = pd.merge(full_ms1_df[['scan_num', 'rt', 'IT']], 
+							 sum_group.drop("rt", axis=1), 
+							 on='scan_num', how="left")
 
+		# fill NaN with 0
+		sum_group["TIC"] = sum_group["TIC"].replace(np.nan,0)
+		
 		# calculate ions per scan
 		# ions per scan = ion current (for scan) * inject time /1000
 		sum_group["ions"] = sum_group['TIC']*sum_group['IT']/1000
+
+		# re-order columns
+		sum_group = sum_group[["scan_num", "rt", "TIC", "IT", 
+							  "ions"]]
 
 	# return data frame
 	return sum_group

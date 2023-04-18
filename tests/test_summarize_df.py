@@ -7,7 +7,9 @@ def test_summarize_df():
 	expected_rows = 3  ## testing function without MS1 DataFrame
 	expected_columns = 5  ## testing function with MS1 DataFrame
 	hk_df = hk2df("tests/hk_fixture.hk")
+	string_rows = summarize_df("tests/hk_fixture.hk").shape[0] ## testing string input
 	actual_rows = summarize_df(hk_df).shape[0]  ## testing function without MS1 DataFrame
 	actual_columns = summarize_df(hk_df, tic_df("tests/mzml_fixture.mzML")).shape[1]  ## testing function with MS1 DataFrame
 	assert actual_rows == expected_rows, "DataFrame was not summarized correctly."
+	assert actual_rows == string_rows, "File input was not processed correctly."
 	assert actual_columns == expected_columns, "Ion injection times were not added properly."
