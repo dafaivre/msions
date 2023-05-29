@@ -47,7 +47,7 @@ def match_hk(ref_row: pd.Series, other_df: pd.DataFrame) -> int:
 
 	Parameters 
 	---------- 
-	ref_row : str 
+	ref_row : pd.Series
 		The row of data to match.
 	other_df : pd.DataFrame
 		The other DataFrame to match.

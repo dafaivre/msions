@@ -18,7 +18,7 @@ def plot_data(mzml_input: Union[pd.DataFrame, str],
 			  id_input: Union[pd.DataFrame, str] = None,
 			  method: str = None,
 			  data_type = "TIC",
-			  stats = False,
+			  stats = None,
 			  return_dfs = False,
 			  color: Union[str, List[str]] = ["black", "#1f77b4"], 
 			  no_labels: bool = False, alpha: float = 1.0, 
@@ -65,6 +65,7 @@ def plot_data(mzml_input: Union[pd.DataFrame, str],
 	feat_df = ""
 	id_df = ""
 	sumid_feat_df = ""
+	title_txt = []
 
 	# if it's an mzML file
 	if isinstance(mzml_input, str):
@@ -86,17 +87,30 @@ def plot_data(mzml_input: Union[pd.DataFrame, str],
 			plt.figure(figsize=(fig_params[0], fig_params[1]), dpi=fig_params[2])
 
 	if data_type.lower() == "ions":
-		if stats:
+		if stats.lower() == "print":
 			# find total ions across all 
 			print("Total # of ions: %.2e" % sum(df.ions))
+			
+		elif stats.lower() == "title":
+			# find total ions across all 
+			title_txt.append("Total # of ions: %.2e\n" % sum(df.ions)) 
+		
+		if fig_params is None:
+			# define figure size
+			plt.figure(figsize=(10,8))
 
 		# plot ions
 		plt.plot(df['rt'], df['ions'], color=color[0], alpha=alpha)	
 	
 	elif data_type.lower() == "both":
-		if stats:
+		if stats == "print":
 			# find totals across all scans
 			print("Total Ion Current (TIC): %.2e \t Total # of ions: %.2e" % (sum(df.TIC), sum(df.ions)))
+
+		elif stats.lower() == "title":
+			# find total ions across all 
+			title_txt.append("Total Ion Current (TIC): %.2e\n" % sum(df.TIC)) 
+			title_txt.append("Total # of ions: %.2e\n" % sum(df.ions))
 
 		if fig_params is None:
 			plt.figure(figsize=(16, 6))
@@ -110,9 +124,17 @@ def plot_data(mzml_input: Union[pd.DataFrame, str],
 		plt.plot(df['rt'], df['ions'], color=color[0], alpha=alpha)	
 
 	else:
-		if stats:
+		if stats == "print":
 			# find total ion current across all 
 			print("Total Ion Current (TIC): %.2e" % sum(df.TIC))
+
+		elif stats.lower() == "title":
+			# find total ions across all 
+			title_txt.append("Total Ion Current (TIC): %.2e\n" % sum(df.TIC))
+
+		if fig_params is None:
+			# define figure size
+			plt.figure(figsize=(10,8))
 
 		# plot TIC
 		plt.plot(df['rt'], df['TIC'], color=color[0], alpha=alpha)
@@ -156,24 +178,44 @@ def plot_data(mzml_input: Union[pd.DataFrame, str],
 				sumid_feat_df = summarize_df(id_feat_df, full_ms1_df=df)
 
 			if data_type.lower() == "ions":
-				if stats:
+				if stats.lower() == "print":
 					# find identified ions
 					print("Ions mapped to peptides: %.2e" % sum(sumid_feat_df.ions))
 
 					# calculate ratio of identified ions to total ions
 					print("%.1f%% of the signal" % float(sum(sumid_feat_df.ions)/sum(df.ions)*100))
 
+					# print number of peptide IDs
+					print ("Number of peptide IDs: %.0f" % len(id_df))
+
+				elif stats.lower() == "title":
+					title_txt[0] += "Ions mapped to peptides: %.2e\n" % sum(sumid_feat_df.ions)
+					title_txt[0] += "%.1f%% of the signal\n" % float(sum(sumid_feat_df.ions)/sum(df.ions)*100)
+					title_txt[0] += "Number of peptide IDs: %.0f\n" % len(id_df)
+
 				# plot ID'd ions
 				plt.plot(sumid_feat_df['rt'], sumid_feat_df['ions'], color=color[1], alpha=alpha)
 
 			elif data_type.lower() == "both":
-				if stats:
+				if stats.lower() == "print":
 					# find identified signals
 					print("ID'd TIC: %.2e \t\t\t Ions mapped to peptides: %.2e" % (sum(sumid_feat_df.TIC), sum(sumid_feat_df.ions)))
 
 					# calculate ratio of identified signals to total signal
 					print("%.1f%% of the signal \t\t\t %.1f%% of the signal" % (float(sum(sumid_feat_df.TIC)/sum(df.TIC)*100),
 						  float(sum(sumid_feat_df.ions)/sum(df.ions)*100)))
+
+					# print number of peptide IDs
+					print ("Number of peptide IDs: %.0f" % len(id_df))
+
+				elif stats == "title":
+					title_txt[0] += "ID'd TIC: %.2e\n" % sum(sumid_feat_df.TIC)
+					title_txt[0] += "%.1f%% of the signal\n" % float(sum(sumid_feat_df.TIC)/sum(df.TIC)*100)
+					title_txt[0] += "Number of peptide IDs: %.0f\n" % len(id_df)
+					title_txt[1] += "Ions mapped to peptides: %.2e\n" % sum(sumid_feat_df.ions)
+					title_txt[1] += "%.1f%% of the signal\n\n" % float(sum(sumid_feat_df.ions)/sum(df.ions)*100)
+					# title_txt[1] += "Number of peptide IDs: %.0f" % len(id_df)				
+			
 
 				# plot TIC
 				plt.subplot(1, 2, 1)
@@ -184,25 +226,42 @@ def plot_data(mzml_input: Union[pd.DataFrame, str],
 				plt.plot(sumid_feat_df['rt'], sumid_feat_df['ions'], color=color[1], alpha=alpha)	
 
 			else:
-				if stats:
+				if stats == "print":
 					# find identified total ion current
 					print("ID'd TIC: %.2e" % sum(sumid_feat_df.TIC))
 
 					# calculate ratio of identified ion current to total ion current
 					print("%.1f%% of the signal" % float(sum(sumid_feat_df.TIC)/sum(df.TIC)*100))
 
+					# print number of peptide IDs
+					print ("Number of peptide IDs: %.0f" % len(id_df))
+
+				elif stats == "title":
+					title_txt[0] += "ID'd TIC: %.2e\n" % sum(sumid_feat_df.TIC)
+					title_txt[0] += "%.1f%% of the signal\n" % float(sum(sumid_feat_df.TIC)/sum(df.TIC)*100)
+					title_txt[0] += "Number of peptide IDs: %.0f\n" % len(id_df)
+
+
 				# plot ID'd TIC
 				plt.plot(sumid_feat_df['rt'], sumid_feat_df['TIC'], color=color[1], alpha=alpha)
 
 	if data_type.lower() == "ions":
-		plt.xlabel("Time (min)")
-		plt.ylabel("Ions")
+		plt.xticks(fontsize=14)
+		plt.xlabel("Time (min)", fontsize=18)
+		plt.yticks(fontsize=14)
+		plt.ylabel("Ions", fontsize=18)
+		if stats == "title":
+			plt.title(title_txt[0], loc="left", fontsize=18)
 
 	elif data_type.lower() == "both":
 
 		plt.subplot(1, 2, 1)
-		plt.xlabel("Time (min)")
-		plt.ylabel("Total Ion Current")
+		plt.xticks(fontsize=14)
+		plt.xlabel("Time (min)", fontsize=18)
+		plt.yticks(fontsize=14)
+		plt.ylabel("Total Ion Current", fontsize=18)
+		if stats == "title":
+			plt.title(title_txt[0], loc="left", fontsize=18)
 
 		# gives scientific notation
 		plt.ticklabel_format(axis="y", style="sci", scilimits=(0, 0))
@@ -237,12 +296,21 @@ def plot_data(mzml_input: Union[pd.DataFrame, str],
 				labelright=False) 
 
 		plt.subplot(1, 2, 2)
-		plt.xlabel("Time (min)")
-		plt.ylabel("Ions")
+		plt.xticks(fontsize=14)
+		plt.xlabel("Time (min)", fontsize=18)
+		plt.yticks(fontsize=14)
+		plt.ylabel("Ions", fontsize=18)
+
+		if stats == "title":
+			plt.title(title_txt[1], loc="left", fontsize=18)
 
 	else:
-		plt.xlabel("Time (min)")
-		plt.ylabel("Total Ion Current")
+		plt.xticks(fontsize=14)
+		plt.xlabel("Time (min)", fontsize=18)
+		plt.yticks(fontsize=14)
+		plt.ylabel("Total Ion Current", fontsize=18)
+		if stats == "title":
+			plt.title(title_txt[0], loc="left", fontsize=18)
 
 	# gives scientific notation
 	plt.ticklabel_format(axis="y", style="sci", scilimits=(0, 0))

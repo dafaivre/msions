@@ -177,7 +177,7 @@ def match_rt_mass(ref_row: pd.Series, other_df: pd.DataFrame, rt_diff: float = N
 
 	Parameters 
 	---------- 
-	ref_row : str 
+	ref_row : pd.Series
 		The row of data to match.
 	other_df : pd.DataFrame
 		The other DataFrame to match.
